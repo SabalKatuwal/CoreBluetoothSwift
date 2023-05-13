@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject private var btViewModel = bluetoothViewModel()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            List(btViewModel.deviceNames, id: \.self){ items in
+                Text(items)
+            }
+            .navigationTitle("Nearby Devices")
         }
-        .padding()
+        
     }
 }
 
